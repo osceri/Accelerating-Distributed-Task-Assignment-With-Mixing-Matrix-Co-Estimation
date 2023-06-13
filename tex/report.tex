@@ -10,7 +10,7 @@
 \newcommand{\problem}{Final Report}
 
 \usepackage{geometry}
-\geometry{left=20mm,top=20mm,}
+\geometry{left=18mm,top=20mm,right=18mm}
 
 \usepackage{fancyhdr}
 \usepackage{comment}
@@ -64,7 +64,8 @@ sorting=ynt
 \maketitle
 \section*{Introduction}
 \renewcommand{\sectiontype}{Introduction}
-The field of distributed optimization is ripe, and a great deal of time is spent developing distributed optimization algorithms that can make improvements of convergence rates over other methods, given that one finds structure in the problem. There is however not very many examples of applications within robotics, with \cite{haksar2022consensus}, \cite{shorinwa2020distributed} and \cite{jadbabaie2003coordination} being some examples. This paper aims to apply distributed methods on a problem in robotics directly, and letting it play out in real time in a simulated environment. We present a problem setting in which bots are to pick up and deliver packages subject to charge constraints. They operate using very simple dynamics and trajectory planning with no collision avoidance. A shared objective function to be minimized is presented where each bots task assignment make up the optimization variables. A relaxation of the shared objective is proposed, for which various decentralized methods are derived including co-estimation of the fastest mixing matrix on a graph.
+The field of distributed optimization is very mature, and a great deal of time is spent developing distributed optimization algorithms that can make improvements of convergence rates over other methods, given that one finds structure in the problem. 
+There is however not the same abundance of experimental trials in robotics, with \cite{haksar2022consensus}, \cite{shorinwa2020distributed} and \cite{jadbabaie2003coordination} being some examples. This paper aims to apply distributed methods on a problem in robotics directly, and letting it play out in real time in a simulated environment. We present a problem setting in which bots are to pick up and deliver packages subject to charge constraints. They operate using very simple dynamics and trajectory planning with no collision avoidance. A shared objective function to be minimized is presented where each bots task assignment make up the optimization variables. A relaxation of the shared objective is proposed, for which various decentralized methods are derived including co-estimation of the fastest mixing matrix on a graph.
 
 \subsubsection*{Related Work}
 One example of distributed task assignment is found in \cite{shorinwa2023distributed} in which a version consensus ADMM which does not require a central synchronized host is used to solve a task assignment problem with a linear objective such as \eqref{eq:objective_function}. It reviews the use of the planning in a simulated system as well, and runs the algorithm every few iterations.
@@ -72,8 +73,11 @@ The subject of the fastest mixing matrix on a graph is discussed in \cite{xiao20
 
 \subsubsection*{Contribution}
 In this paper fixed point iterations are derived that may run in real time, allowing the relaxed objective and the graph structure to change during the course of the algorithm, while maintaining stability and performance. In this sense the planning is applied like the controls of a dynamical system, rather than a regularly scheduled subroutine.
+To address the fact that communication is the bottleneck of this system we propose the co-estimation of the fastest mixing matrix along with the objective value to make better use of the transmitted data and show it's improvements on the baseline approach. \newline
 
-To address the fact that communication is the bottleneck of this system we propose the co-estimation of the fastest mixing matrix along with the objective value to make better use of the transmitted data and show it's improvements on the baseline approach.
+The code repository containing the numerical experiments is available in 
+
+\url{https://github.com/osceri/Accelerating-Distributed-Task-Assignment-With-Mixing-Matrix-Co-Estimation}.
 
 \section*{Problem Setup}
 \renewcommand{\sectiontype}{Problem Setup}
